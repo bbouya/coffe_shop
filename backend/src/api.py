@@ -219,3 +219,29 @@ def handle_auth(e):
         "error": e.status_code,
         'message': e.error
     }), 401
+
+
+@app.errorhandler(400)
+def bad_request(e):
+    return jsonify({
+        "success": False,
+        "error": e.status_code,
+        "message": "bad request 400"
+    }), 400
+
+
+@app.errorhandler(500)
+def error(e):
+    return jsonify({
+        "success": False,
+        "error": e.status_code,
+        "message": "error 500"
+    }), 500
+
+@app.errorhandler(405)
+def not_allowed(e):
+    return jsonify({
+        "success": False,
+        "error": e.status_code,
+        "message": "not allowed 405"
+    }), 405
